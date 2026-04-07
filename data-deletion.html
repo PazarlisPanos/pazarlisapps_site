@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Deletion — PazarlisApps</title>
+    <style>
+        :root {
+            --color-bg: #FAFAF9;
+            --color-surface: #FFFFFF;
+            --color-text: #1C1917;
+            --color-text-secondary: #57534E;
+            --color-accent: #0F766E;
+            --color-accent-light: #F0FDFA;
+            --color-border: #E7E5E4;
+            --color-divider: #D6D3D1;
+            --font-display: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --font-body: Georgia, 'Times New Roman', serif;
+            --max-width: 740px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            font-size: 17px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            border-bottom: 1px solid var(--color-border);
+            background: var(--color-surface);
+        }
+
+        .header-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 24px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--color-text);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            color: var(--color-accent);
+        }
+
+        nav a {
+            font-family: var(--font-display);
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            margin-left: 28px;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--color-accent);
+        }
+
+        main {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 60px 28px 100px;
+        }
+
+        .page-label {
+            font-family: var(--font-display);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-accent);
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: var(--color-text);
+            margin-bottom: 16px;
+        }
+
+        .effective-date {
+            font-family: var(--font-display);
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            margin-bottom: 48px;
+        }
+
+        h2 {
+            font-family: var(--font-display);
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: var(--color-text);
+            margin-top: 48px;
+            margin-bottom: 16px;
+            padding-top: 32px;
+            border-top: 1px solid var(--color-border);
+        }
+
+        h2:first-of-type {
+            border-top: none;
+            padding-top: 0;
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--color-text-secondary);
+        }
+
+        ul, ol {
+            margin: 12px 0 20px 24px;
+            color: var(--color-text-secondary);
+        }
+
+        li {
+            margin-bottom: 8px;
+            padding-left: 4px;
+        }
+
+        strong {
+            color: var(--color-text);
+            font-weight: 600;
+        }
+
+        a {
+            color: var(--color-accent);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .callout {
+            background: var(--color-accent-light);
+            border-left: 3px solid var(--color-accent);
+            padding: 20px 24px;
+            margin: 28px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .callout p {
+            margin-bottom: 0;
+            color: var(--color-text);
+            font-size: 15px;
+        }
+
+        .steps-box {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 32px;
+            margin: 28px 0;
+        }
+
+        .steps-box h3 {
+            font-family: var(--font-display);
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 20px;
+        }
+
+        .step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: var(--color-accent);
+            color: #fff;
+            font-family: var(--font-display);
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-content strong {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .step-content p {
+            font-size: 15px;
+            margin-bottom: 0;
+        }
+
+        .email-template {
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            padding: 24px;
+            margin: 28px 0;
+            font-family: monospace;
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+            white-space: pre-wrap;
+        }
+
+        .email-template .label {
+            font-family: var(--font-display);
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--color-accent);
+            margin-bottom: 12px;
+            display: block;
+            font-family: var(--font-display);
+        }
+
+        footer {
+            border-top: 1px solid var(--color-border);
+            background: var(--color-surface);
+        }
+
+        .footer-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-display);
+            font-size: 13px;
+            color: var(--color-text-secondary);
+        }
+
+        .footer-inner a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .footer-inner a:hover {
+            color: var(--color-accent);
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 28px; }
+            h2 { font-size: 19px; }
+            main { padding: 40px 20px 80px; }
+            .header-inner { padding: 20px; }
+            .steps-box { padding: 24px 20px; }
+            .footer-inner {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+            .footer-inner a { margin-left: 0; margin: 0 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <a href="/" class="logo">Pazarlis<span>Apps</span></a>
+        <nav>
+            <a href="/privacy.html">Privacy Policy</a>
+            <a href="/data-deletion.html">Data Deletion</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="page-label">Legal</div>
+    <h1>Data Deletion Request</h1>
+    <p class="effective-date">Effective date: April 7, 2026</p>
+
+    <h2>1. Overview</h2>
+    <p>PazarlisApps respects your right to control your personal data. If you have interacted with one of our business clients' chatbots through <strong>WhatsApp</strong>, <strong>Facebook Messenger</strong>, or <strong>Instagram Direct</strong>, you may request the permanent deletion of your data from our systems.</p>
+    <p>Our services use the <strong>Meta WhatsApp Cloud API</strong>, <strong>Messenger API</strong>, and <strong>Instagram Messaging API</strong> to operate chatbot automations on behalf of our business clients. All conversation data is stored in a PostgreSQL database under our control.</p>
+
+    <h2>2. What Data Can Be Deleted</h2>
+    <p>Upon receiving a valid deletion request, we will permanently remove the following data associated with you:</p>
+    <ul>
+        <li><strong>Phone number</strong> — if you interacted via WhatsApp</li>
+        <li><strong>Facebook User ID</strong> — if you interacted via Messenger</li>
+        <li><strong>Instagram User ID</strong> — if you interacted via Instagram Direct</li>
+        <li><strong>Message content</strong> — all text, media references, and other content from your conversations</li>
+        <li><strong>Conversation history</strong> — all timestamps, message sequences, and metadata related to your interactions</li>
+    </ul>
+
+    <h2>3. How to Request Data Deletion</h2>
+
+    <div class="steps-box">
+        <h3>Follow these steps:</h3>
+
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <strong>Send an email</strong>
+                <p>Write to <a href="mailto:pazarlisapps.com@gmail.com">pazarlisapps.com@gmail.com</a> with the subject line "Data Deletion Request".</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <strong>Include your details</strong>
+                <p>In the body of the email, please provide: your full name, the platform you used (WhatsApp, Messenger, or Instagram), and any identifying information such as your phone number, Facebook username, or Instagram handle.</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <strong>We process your request</strong>
+                <p>We will verify your identity and permanently delete all associated data from our PostgreSQL database within <strong>30 days</strong> of receiving your request.</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <strong>Confirmation</strong>
+                <p>You will receive an email confirmation once your data has been successfully deleted.</p>
+            </div>
+        </div>
+    </div>
+
+    <h2>4. Sample Email Template</h2>
+    <p>You may use the following template to submit your request:</p>
+
+    <div class="email-template"><span class="label">Email Template</span>To: pazarlisapps.com@gmail.com
+Subject: Data Deletion Request
+
+Dear PazarlisApps Team,
+
+I would like to request the deletion of all my personal
+data from your systems.
+
+Full Name: [Your Name]
+Platform: [WhatsApp / Messenger / Instagram]
+Phone Number: [Your phone number, if applicable]
+Facebook Username: [Your username, if applicable]
+Instagram Handle: [Your handle, if applicable]
+
+Please confirm once the deletion is complete.
+
+Thank you.</div>
+
+    <h2>5. Important Notes</h2>
+    <ul>
+        <li>Deletion requests are processed within <strong>30 days</strong> of receipt.</li>
+        <li>Once data is deleted, it <strong>cannot be recovered</strong>.</li>
+        <li>Deletion from our systems does not affect data held by Meta (Facebook, WhatsApp, Instagram) on their own platforms. To manage your data on Meta's platforms, please refer to <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">Meta's Privacy Policy</a>.</li>
+        <li>We may retain certain data if required by law or to comply with legal obligations.</li>
+    </ul>
+
+    <div class="callout">
+        <p>If you have any questions about the data deletion process, please contact us at <a href="mailto:pazarlisapps.com@gmail.com">pazarlisapps.com@gmail.com</a>.</p>
+    </div>
+
+    <h2>6. Facebook Login Data Deletion</h2>
+    <p>If you used Facebook Login to interact with our services, you may also initiate data deletion directly from your Facebook account settings. Navigate to <strong>Settings &amp; Privacy → Settings → Apps and Websites</strong>, find PazarlisApps, and select "Remove". This will trigger a data deletion request on our end.</p>
+    <p>Alternatively, you can use this page or contact us directly via email to request deletion.</p>
+
+    <h2>7. Contact</h2>
+    <p><strong>Email:</strong> <a href="mailto:pazarlisapps.com@gmail.com">pazarlisapps.com@gmail.com</a><br>
+    <strong>Website:</strong> <a href="https://pazarlisapps.com">pazarlisapps.com</a><br>
+    <strong>Privacy Policy:</strong> <a href="/privacy.html">pazarlisapps.com/privacy</a></p>
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <span>&copy; 2026 PazarlisApps. All rights reserved.</span>
+        <div>
+            <a href="/privacy.html">Privacy Policy</a>
+            <a href="/data-deletion.html">Data Deletion</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
